@@ -26,7 +26,7 @@ function App() {
                   <li key={route.path}>
                     <NavLink 
                       to={route.path!}
-                      className={activeClass}> {route.path} </NavLink>
+                      className={activeClass}> {route.to} </NavLink>
                   </li>
                 ))
               }
@@ -44,7 +44,7 @@ function App() {
                   />
                 ))
               }
-              <Route path="/*" element={<h1>404</h1>} />
+              {/* <Route path="/*" element={<h1>404</h1>} /> */}
             </Routes>
           </div>
 
