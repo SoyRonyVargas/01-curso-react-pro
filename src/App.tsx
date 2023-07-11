@@ -1,4 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom"
+import { routes } from "./01-lazyload/routers/routes";
+import { Suspense } from 'react'
 import logo from './logo.svg';
 
 type ActiveClass = string | ((props: {
@@ -11,37 +15,42 @@ function App() {
   const activeClass: ActiveClass = ({ isActive }) => isActive ? "nav-active" : "" 
 
   return (
-    <BrowserRouter>
-       <div className="main-layout">
-        <nav>
-            <img src={ logo } alt="React Logo" />
-          <ul>
-            <li>
-              <NavLink 
-                to="/" 
-                className={activeClass}>Home</NavLink>
-            </li>
-            <li>
-              <NavLink 
-                to="/about" 
-                className={activeClass}>About</NavLink>
-            </li>
-            <li>
-              <NavLink 
-                to="/users" 
-                className={activeClass}>Users</NavLink>
-              </li>
-          </ul>
-        </nav>
+    <Suspense fallback={<p>Cargando...</p>}>
+      <BrowserRouter>
+        <div className="main-layout">
+          <nav>
+              <img src={ logo } alt="React Logo" />
+            <ul>
+                {
+                routes.map( route => (
+                  <li key={route.path}>
+                    <NavLink 
+                      to={route.path!}
+                      className={activeClass}> {route.path} </NavLink>
+                  </li>
+                ))
+              }
+            </ul>
+          </nav>
 
-        <Routes>
-          <Route path="/" element={<h1>Hola</h1>} />
-          <Route path="/about" element={<h1>About</h1>} />
-          <Route path="/*" element={<h1>404</h1>} />
-        </Routes>
+          <div className="router-container">
+            <Routes>
+              {
+                routes.map( route => (
+                  <Route 
+                    key={route.path}
+                    path={route.path} 
+                    Component={route.Component} 
+                  />
+                ))
+              }
+              <Route path="/*" element={<h1>404</h1>} />
+            </Routes>
+          </div>
 
-      </div>
-    </BrowserRouter>
+        </div>
+      </BrowserRouter>
+    </Suspense>
   )
 }
 

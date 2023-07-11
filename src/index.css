@@ -20,6 +20,11 @@ code {
   flex-direction: row;
 }
 
+.router-container
+{
+  padding: 20px 10px;
+}
+
 nav {
   background-color: #363a45;
   height: 100vh;
