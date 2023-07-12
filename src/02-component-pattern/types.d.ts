@@ -1,3 +1,8 @@
+
+type CustomStyleAtributtes = {
+    className?: string
+}
+
 export type ProductCardContextType = {
     increaseBy: (value: number) => void
     product: Product
@@ -10,11 +15,15 @@ export type Product = {
     id: string
 }
 
-export type ProductTitleProps = {
+export type ProductTitleProps = CustomStyleAtributtes & {
     title?: string
 }
 
-export type ProductCardProps = {
+export type ProductImageProps = CustomStyleAtributtes & {
+    img?: string 
+}
+
+export type ProductCardProps = CustomStyleAtributtes & {
     children?: ReactNode[] | ReactNode
     Title?: JSX.Element
     product?: Product
