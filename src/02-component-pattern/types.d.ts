@@ -1,5 +1,7 @@
+import { CSSProperties } from "react"
 
 type CustomStyleAtributtes = {
+    style?: CSSProperties
     className?: string
 }
 

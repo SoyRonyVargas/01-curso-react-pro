@@ -27,7 +27,11 @@ const ShoppingPage = () => {
 
         </ProductCard>
 
-        <ProductCard>
+        <ProductCard
+          style={{
+            background: "#708"
+          }}
+        >
 
           <ProductCard.Image img='coffee-mug.png' />
 
