@@ -40,6 +40,7 @@ export type ProductCardProps = CustomStyleAtributtes & {
     children?: ReactNode[] | ReactNode
     Title?: JSX.Element
     product?: Product
+    value?: number
 }
 
 export type OnChangeCard = ( args: OnChangeArgs ) => void

@@ -6,11 +6,12 @@ import { ProductImage } from './ProductImage'
 import useProduct from '../hooks/useProduct'
 import { ProductCardProps } from '../types'
 
-const ProductCard = ({ children, product , className , style , onChange }: ProductCardProps) => {
+const ProductCard = ({ children, product , className , style , onChange , value = 0 }: ProductCardProps) => {
 
     const { counter, increaseBy } = useProduct({
         product: product!,
         onChange,
+        value
     })
 
     return (
