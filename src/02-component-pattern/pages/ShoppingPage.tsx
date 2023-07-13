@@ -1,6 +1,31 @@
+import { useState } from "react"
 import ProductCard from "../components/ProductCard"
+import { OnChangeCard, Product, ProductCart } from "../types"
 
+const products = [
+  {
+    id: "1",
+    title: "taza 1",
+    img: "coffee-mug.png"
+  },
+  {
+    id: "2",
+    title: "taza 2",
+    img: "coffee-mug2.png"
+  }
+]
 const ShoppingPage = () => {
+
+  const [ cart , setCart ] = useState<ProductCart[]>([])
+
+  const onProductChange : OnChangeCard = (args) => {
+    
+    console.log("Cambiado");
+    
+    console.log(args);
+
+  }
+
   return (
     <div>
 
@@ -10,92 +35,49 @@ const ShoppingPage = () => {
 
       <section className="row" style={{ width: "90%" , margin: 0 }} >
         
-        <ProductCard
-          className="bg-dark text-white"
-          product={{
-            id: "1",
-            title: "TITULO",
-            img: "https://static.wikia.nocookie.net/creatorpedia/images/e/e7/Joji.png"
-          }}
-        >
+        {
+          products.map( product => (
+            <ProductCard
+              className="bg-dark text-white col-2"
+              onChange={onProductChange}
+              key={product.id}
+              product={product}
+            >
 
-          <ProductCard.Image className="card-img-top" img='coffee-mug.png' />
+              <ProductCard.Image className="card-img-top" img='coffee-mug.png' />
 
-          <ProductCard.Title className="text-white mt-4" />
+              <ProductCard.Title className="text-white mt-4" />
 
-          <ProductCard.Buttons />
+              <ProductCard.Buttons />
 
-        </ProductCard>
-
-        <ProductCard
-          style={{
-            background: "#708"
-          }}
-        >
-
-          <ProductCard.Image img='coffee-mug.png' />
-
-          <ProductCard.Title />
-
-          <ProductCard.Buttons />
-
-        </ProductCard>
-        <ProductCard>
-
-          <ProductCard.Image img='coffee-mug.png' />
-
-          <ProductCard.Title />
-
-          <ProductCard.Buttons />
-
-        </ProductCard>
-        <ProductCard>
-
-          <ProductCard.Image img='coffee-mug.png' />
-
-          <ProductCard.Title />
-
-          <ProductCard.Buttons />
-
-        </ProductCard>
-        <ProductCard>
-
-          <ProductCard.Image img='coffee-mug.png' />
-
-          <ProductCard.Title />
-
-          <ProductCard.Buttons />
-
-        </ProductCard>
-        <ProductCard>
-
-          <ProductCard.Image img='coffee-mug.png' />
-
-          <ProductCard.Title />
-
-          <ProductCard.Buttons />
-
-        </ProductCard>
-        <ProductCard>
-
-          <ProductCard.Image img='coffee-mug.png' />
-
-          <ProductCard.Title />
-
-          <ProductCard.Buttons />
-
-        </ProductCard>
-        <ProductCard>
-
-          <ProductCard.Image img='coffee-mug.png' />
-
-          <ProductCard.Title />
-
-          <ProductCard.Buttons />
-
-        </ProductCard>
+            </ProductCard>
+          ))
+        }
 
       </section>
+
+      <div className="shooping-cart">
+        
+        <h5>Carrito</h5>
+
+        <ProductCard
+            className="bg-dark text-white"
+            style={{
+              width: "100px"
+            }}
+            product={{
+              id: "1",
+              title: "TITULO",
+              img: "coffee-mug.png"
+            }}
+          >
+
+            <ProductCard.Image className="card-img-top" img='coffee-mug.png' />
+
+            <ProductCard.Buttons />
+
+        </ProductCard>
+      </div>
 
     </div>
   )

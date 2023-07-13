@@ -57,3 +57,11 @@ nav li a {
   color: grey;
   transition: all .3s ease-out;
 }
+
+.shooping-cart
+{
+  padding: 10px;
+  position: fixed;
+  right: 10px;
+  top: 0;
+}

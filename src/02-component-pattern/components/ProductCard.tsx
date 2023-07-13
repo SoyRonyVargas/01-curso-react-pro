@@ -6,9 +6,12 @@ import { ProductImage } from './ProductImage'
 import useProduct from '../hooks/useProduct'
 import { ProductCardProps } from '../types'
 
-const ProductCard = ({ children, product , className , style }: ProductCardProps) => {
+const ProductCard = ({ children, product , className , style , onChange }: ProductCardProps) => {
 
-    const { counter, increaseBy } = useProduct()
+    const { counter, increaseBy } = useProduct({
+        product: product!,
+        onChange,
+    })
 
     return (
         <ProductCardContext.Provider value={{
@@ -16,7 +19,7 @@ const ProductCard = ({ children, product , className , style }: ProductCardProps
             increaseBy,
             counter,
         }}>
-            <div style={style} className={`${styles.productCard} ${className ?? ""} col-2`}>
+            <div style={style} className={`${styles.productCard} ${className ?? ""} `}>
                 {children}
             </div>
         </ProductCardContext.Provider>

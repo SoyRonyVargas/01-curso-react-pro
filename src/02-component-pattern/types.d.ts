@@ -17,6 +17,11 @@ export type Product = {
     id: string
 }
 
+export type ProductCart = {
+    product: Product
+    count: number
+}
+
 export type ProductTitleProps = CustomStyleAtributtes & {
     title?: string
 }
@@ -25,8 +30,16 @@ export type ProductImageProps = CustomStyleAtributtes & {
     img?: string 
 }
 
+type OnChangeArgs = {
+    product: Product
+    count: number
+}
+
 export type ProductCardProps = CustomStyleAtributtes & {
+    onChange?: ( args: OnChangeArgs ) => void
     children?: ReactNode[] | ReactNode
     Title?: JSX.Element
     product?: Product
 }
+
+export type OnChangeCard = ( args: OnChangeArgs ) => void
